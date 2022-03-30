@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -23,18 +24,27 @@ public class ProductsController {
     private final ProductsService productsService;
 
     @GetMapping
-    ResponseEntity<?> getAllProducts() {
-        return ResponseEntity.ok(productsService.getAllProducts());
+    ResponseEntity<?> getAllProducts(
+            @RequestParam(value = "title", required = false) String title
+    ) {
+        ProductDTO filters = new ProductDTO();
+        filters.setTitle(title);
+
+        return ResponseEntity.ok(productsService.getAllProducts(filters));
     }
 
     @PostMapping
     ResponseEntity<?> save(@Valid @RequestBody final ProductDTO productDTO) {
-        return ResponseEntity.ok(productsService.save(null));
+        return ResponseEntity.ok(productsService.save(
+                productsService.convertToEntity(productDTO)
+        ));
     }
 
     @PutMapping("{pid}")
     ResponseEntity<?> update(@PathVariable("pid") String pid, @RequestBody final ProductDTO productDTO) {
-        return ResponseEntity.ok(productsService.update(null));
+        return ResponseEntity.ok(productsService.update(
+                productsService.convertToEntity(productDTO)
+        ));
     }
 
     @GetMapping("{pid}")

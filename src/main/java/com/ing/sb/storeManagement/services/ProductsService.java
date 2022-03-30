@@ -15,8 +15,8 @@ import java.util.List;
 public class ProductsService implements Convertable<Product, ProductDTO> {
     private final ProductsRepository productsRepository;
 
-    public List<Product> getAllProducts() {
-        return null;
+    public List<Product> getAllProducts(ProductDTO filters) {
+        return productsRepository.findAll();
     }
 
     public Product getProduct(String id) {
