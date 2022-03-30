@@ -1,5 +1,6 @@
 package com.ing.sb.storeManagement.controllers;
 
+import com.ing.sb.storeManagement.services.ProductsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +17,9 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/products")
-public class ProductController {
+public class ProductsController {
+
+    private final ProductsService productsService;
 
     @GetMapping
     ResponseEntity<?> getAllProducts() {
