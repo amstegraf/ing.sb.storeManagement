@@ -1,5 +1,6 @@
 package com.ing.sb.storeManagement.controllers;
 
+import com.ing.sb.storeManagement.dtos.ProductDTO;
 import com.ing.sb.storeManagement.services.ProductsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,26 +24,26 @@ public class ProductsController {
 
     @GetMapping
     ResponseEntity<?> getAllProducts() {
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(productsService.getAllProducts());
     }
 
     @PostMapping
-    ResponseEntity<?> save(@Valid @RequestBody final Object productDTO) {
-        return ResponseEntity.ok(null);
+    ResponseEntity<?> save(@Valid @RequestBody final ProductDTO productDTO) {
+        return ResponseEntity.ok(productsService.save(null));
     }
 
     @PutMapping("{pid}")
-    ResponseEntity<?> update(@PathVariable("pid") String pid, @RequestBody final Object productDTO) {
-        return ResponseEntity.ok(null);
+    ResponseEntity<?> update(@PathVariable("pid") String pid, @RequestBody final ProductDTO productDTO) {
+        return ResponseEntity.ok(productsService.update(null));
     }
 
     @GetMapping("{pid}")
     ResponseEntity<?> getProduct(@PathVariable("pid") String pid) {
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(productsService.getProduct(pid));
     }
 
     @DeleteMapping("{pid}")
     ResponseEntity<?> delete(@PathVariable("pid") String pid) {
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(productsService.delete(pid));
     }
 }
