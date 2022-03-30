@@ -26,7 +26,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/api/**").authenticated()
-                .antMatchers("/h2-console/**", "/swagger-ui*").permitAll();
-
+                .antMatchers(
+                        "/h2-console/**", "/swagger*", "/stats/**"
+                ).permitAll();
     }
 }
