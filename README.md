@@ -3,9 +3,7 @@
 Create an API that acts as a store management tool- Create a Github profile if you don't have one
 
 - Implement basic functions, for example: add-product, find-product, change-price or others
-- Design error mechanism and handling plus logging
 - Write unit tests, at least for one class
-
 - Optional: Implement a basic authentication mechanism and role based endpoint access
 
 Done: 
@@ -14,3 +12,4 @@ Done:
 - No front-end, you can focus on backend, no need to overcomplicate the structure
 - Use Java 9+ features
 - Add a small Readme to document the project
+- Design error mechanism and handling plus logging

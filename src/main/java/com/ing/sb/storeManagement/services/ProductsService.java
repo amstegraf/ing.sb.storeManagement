@@ -1,5 +1,6 @@
 package com.ing.sb.storeManagement.services;
 
+import com.ing.sb.storeManagement.dtos.ProductDTO;
 import com.ing.sb.storeManagement.entities.Product;
 import com.ing.sb.storeManagement.exceptions.ResourceNotFoundException;
 import com.ing.sb.storeManagement.repositories.ProductsRepository;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductsService {
+public class ProductsService implements Convertable<Product, ProductDTO> {
     private final ProductsRepository productsRepository;
 
     public List<Product> getAllProducts() {
@@ -19,15 +20,13 @@ public class ProductsService {
     }
 
     public Product getProduct(String id) {
-        if (!productsRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Product not found");
-        }
-
-        return null;
+        return productsRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Product not found")
+        );
     }
 
     public Product save(Product product) {
-        return null;
+        return productsRepository.save(product);
     }
 
     public Product update(Product product) {
@@ -45,6 +44,18 @@ public class ProductsService {
     }
 
     public boolean delete(Product product) {
-        return false;
+        productsRepository.delete(product);
+
+        return true;
+    }
+
+    @Override
+    public Product convertToEntity(ProductDTO dto) {
+        return null;
+    }
+
+    @Override
+    public ProductDTO convertToDTO(Product entity) {
+        return null;
     }
 }
