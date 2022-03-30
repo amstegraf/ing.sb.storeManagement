@@ -29,7 +29,7 @@
         <h2.version>1.4.193</h2.version>
         <lombok.version>1.18.6</lombok.version>
         <lombok.plugin.version>1.18.6.0</lombok.plugin.version>
-        <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
+        <springdoc.swagger2.version>1.6.6</springdoc.swagger2.version>
     </properties>
 
     <dependencies>
@@ -102,14 +102,9 @@
 
         <!-- SWAGGER -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.swagger2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.swagger2.version}</version>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.swagger2.version}</version>
         </dependency>
 
         <!-- Dev tools -->
@@ -121,12 +116,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-            <version>${spring.boot.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
 
