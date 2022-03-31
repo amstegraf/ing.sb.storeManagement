@@ -19,8 +19,9 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .csrf().disable()
                 .formLogin().disable()
-                .httpBasic().disable()
                 .logout().disable()
+                .httpBasic()
+                .and()
                 .headers().frameOptions().disable()
                 .and()
 
