@@ -26,7 +26,7 @@ public class LoggingMiddleware implements HandlerInterceptor {
         MDC.put(CORRELATION_ID_LOG_VAR_NAME, correlationId);
         Thread.currentThread().setName(correlationId);
 
-        logger.info("[ REQUEST STARTED ] {} {} {} ...", correlationId, request.getMethod(), request.getRequestURI());
+        logger.info("[ REQUEST STARTED ] {} {} ...", request.getMethod(), request.getRequestURI());
         startTime = System.currentTimeMillis();
 
         return true;
