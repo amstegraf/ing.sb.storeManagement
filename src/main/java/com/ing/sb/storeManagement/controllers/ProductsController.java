@@ -3,6 +3,7 @@ package com.ing.sb.storeManagement.controllers;
 import com.ing.sb.storeManagement.dtos.ProductDTO;
 import com.ing.sb.storeManagement.services.ProductsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +55,9 @@ public class ProductsController {
 
     @DeleteMapping("{pid}")
     ResponseEntity<?> delete(@PathVariable("pid") String pid) {
-        return ResponseEntity.ok(productsService.delete(pid));
+        productsService.delete(pid);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                .body(null);
     }
 }

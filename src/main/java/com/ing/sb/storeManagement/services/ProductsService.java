@@ -43,7 +43,14 @@ public class ProductsService implements Convertable<Product, ProductDTO> {
     }
 
     public boolean delete(String id) {
-        Product productExisting = getProduct(id);
+        Product productExisting = null;
+
+        // as per RFC there is no need to return an error on refresh
+        try {
+            productExisting = getProduct(id);
+        } catch (ResourceNotFoundException e) {
+            return true;
+        }
 
         return delete(productExisting);
     }
