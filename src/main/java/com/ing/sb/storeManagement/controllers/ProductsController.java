@@ -26,10 +26,14 @@ public class ProductsController {
 
     @GetMapping
     ResponseEntity<?> getAllProducts(
-            @RequestParam(value = "title", required = false) String title
+            @RequestParam(value = "title", required = false) String title,
+            @RequestParam(value = "startPrice", required = false) Integer startPrice,
+            @RequestParam(value = "endPrice", required = false) Integer endPrice
     ) {
         ProductDTO filters = new ProductDTO();
         filters.setTitle(title);
+        filters.setStartPrice(startPrice);
+        filters.setEndPrice(endPrice);
 
         return ResponseEntity.ok(productsService.getAllProducts(filters));
     }

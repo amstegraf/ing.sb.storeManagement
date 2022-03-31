@@ -1,5 +1,6 @@
 package com.ing.sb.storeManagement.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -16,4 +17,9 @@ public class ProductDTO {
 
     private LocalDate dateAdded;
     private LocalDateTime lastModified;
+
+    @JsonIgnore
+    private Integer startPrice;
+    @JsonIgnore
+    private Integer endPrice;
 }

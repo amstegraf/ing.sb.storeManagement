@@ -19,7 +19,9 @@ public class ProductsService implements Convertable<Product, ProductDTO> {
 
     public List<Product> getAllProducts(ProductDTO filters) {
         Specification<Product> productSpecifications = ProductSpecification
-                .filterByTitle(filters.getTitle());
+                .filterByTitle(filters.getTitle())
+                .and(ProductSpecification.filterByStartPrice(filters.getStartPrice()))
+                .and(ProductSpecification.filterByEndPrice(filters.getEndPrice()));
 
         return productsRepository.findAll(productSpecifications);
     }
