@@ -12,6 +12,7 @@ public class ProductDTO {
     @NotEmpty(message = "Title can't be empty")
     private String title;
     private String description;
+    private Integer price;
 
     private LocalDate dateAdded;
     private LocalDateTime lastModified;

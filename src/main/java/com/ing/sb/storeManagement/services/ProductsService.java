@@ -4,8 +4,10 @@ import com.ing.sb.storeManagement.dtos.ProductDTO;
 import com.ing.sb.storeManagement.entities.Product;
 import com.ing.sb.storeManagement.exceptions.ResourceNotFoundException;
 import com.ing.sb.storeManagement.repositories.ProductsRepository;
+import com.ing.sb.storeManagement.specifications.ProductSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +18,10 @@ public class ProductsService implements Convertable<Product, ProductDTO> {
     private final ProductsRepository productsRepository;
 
     public List<Product> getAllProducts(ProductDTO filters) {
-        return productsRepository.findAll();
+        Specification<Product> productSpecifications = ProductSpecification
+                .filterByTitle(filters.getTitle());
+
+        return productsRepository.findAll(productSpecifications);
     }
 
     public Product getProduct(String id) {
@@ -51,11 +56,19 @@ public class ProductsService implements Convertable<Product, ProductDTO> {
 
     @Override
     public Product convertToEntity(ProductDTO dto) {
-        return null;
+        Product product = new Product();
+
+        BeanUtils.copyProperties(dto, product);
+
+        return product;
     }
 
     @Override
     public ProductDTO convertToDTO(Product entity) {
-        return null;
+        ProductDTO productDTO = new ProductDTO();
+
+        BeanUtils.copyProperties(entity, productDTO);
+
+        return productDTO;
     }
 }

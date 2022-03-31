@@ -36,6 +36,9 @@ public class Product {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "price")
+    private Integer price;
+
     @Column(name = "description")
     private String description;
 

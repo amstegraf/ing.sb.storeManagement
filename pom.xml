@@ -23,6 +23,8 @@
         <maven.test.plugin>2.18.1</maven.test.plugin>
         <maven.release.plugin>3.0.0-M1</maven.release.plugin>
 
+        <hibernate.version>5.6.7.Final</hibernate.version>
+
         <commons-lang.version>3.6</commons-lang.version>
         <testng.version>6.14.3</testng.version>
         <mockito.version>4.4.0</mockito.version>
@@ -169,6 +171,11 @@
                 <version>3.7.0</version>
                 <configuration>
                     <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.hibernate</groupId>
+                            <artifactId>hibernate-jpamodelgen</artifactId>
+                            <version>${hibernate.version}</version>
+                        </path>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
