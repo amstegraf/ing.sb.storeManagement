@@ -3,6 +3,8 @@ package com.ing.sb.storeManagement.controllers;
 import com.ing.sb.storeManagement.dtos.ProductDTO;
 import com.ing.sb.storeManagement.services.ProductsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +28,7 @@ public class ProductsController {
 
     @GetMapping
     ResponseEntity<?> getAllProducts(
+            @PageableDefault(size = 50) Pageable pageable,
             @RequestParam(value = "title", required = false) String title,
             @RequestParam(value = "startPrice", required = false) Integer startPrice,
             @RequestParam(value = "endPrice", required = false) Integer endPrice
@@ -35,7 +38,7 @@ public class ProductsController {
         filters.setStartPrice(startPrice);
         filters.setEndPrice(endPrice);
 
-        return ResponseEntity.ok(productsService.getAllProducts(filters));
+        return ResponseEntity.ok(productsService.getAllProducts(filters, pageable));
     }
 
     @PostMapping

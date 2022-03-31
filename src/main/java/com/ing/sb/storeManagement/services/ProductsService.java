@@ -7,23 +7,23 @@ import com.ing.sb.storeManagement.repositories.ProductsRepository;
 import com.ing.sb.storeManagement.specifications.ProductSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ProductsService implements Convertable<Product, ProductDTO> {
     private final ProductsRepository productsRepository;
 
-    public List<Product> getAllProducts(ProductDTO filters) {
+    public Page<Product> getAllProducts(ProductDTO filters, Pageable pageable) {
         Specification<Product> productSpecifications = ProductSpecification
                 .filterByTitle(filters.getTitle())
                 .and(ProductSpecification.filterByStartPrice(filters.getStartPrice()))
                 .and(ProductSpecification.filterByEndPrice(filters.getEndPrice()));
 
-        return productsRepository.findAll(productSpecifications);
+        return productsRepository.findAll(productSpecifications, pageable);
     }
 
     public Product getProduct(String id) {
